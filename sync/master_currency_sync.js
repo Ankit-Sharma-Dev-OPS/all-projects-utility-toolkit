@@ -1,11 +1,29 @@
 const { MongoClient, ObjectId } = require('mongodb');
 
+/**
+ * Synchronizes and migrates currency snapshot data across the Make and SC
+ * backend databases.
+ *
+ * The script rebases snapshot rates to the organization base currency,
+ * removes legacy `adminRate` values, and propagates updated snapshots from
+ * parent records to their related child records.
+ *
+ * Update the database connection URIs below before running the script.
+ */
+
 // Connection URIs from .env files
 const MAKE_DB_URI = "";
 const SC_DB_URI = "";
 
 /**
  * Step 1: Synchronize snapshots from parent to child records
+ *
+ * @async
+ * @param {import('mongodb').Db} db MongoDB database instance.
+ * @param {string} parentCollName Parent collection containing the source snapshot.
+ * @param {string} childCollName Child collection that receives the snapshot.
+ * @param {string} joinField Parent document field containing the child record id.
+ * @returns {Promise<void>} Resolves when snapshot synchronization completes.
  */
 async function syncSnapshots(db, parentCollName, childCollName, joinField) {
     console.log(`--- Syncing records from ${parentCollName} to ${childCollName}...`);
@@ -36,6 +54,11 @@ async function syncSnapshots(db, parentCollName, childCollName, joinField) {
 
 /**
  * Step 2: Migrate rates to Org Base and remove adminRate
+ *
+ * @async
+ * @param {import('mongodb').Db} db MongoDB database instance.
+ * @param {string} collectionName Collection whose currency snapshots should be migrated.
+ * @returns {Promise<void>} Resolves when the rate migration finishes.
  */
 async function migrateRates(db, collectionName) {
     console.log(`--- Migrating rates in collection: ${collectionName}...`);
@@ -66,6 +89,12 @@ async function migrateRates(db, collectionName) {
     console.log(`Migrated ${migratedCount} records.`);
 }
 
+/**
+ * Runs the currency snapshot migration workflow for the Make backend.
+ *
+ * @async
+ * @returns {Promise<void>} Resolves when Make backend processing completes.
+ */
 async function processMakeBackend() {
     console.log("\n--- Processing Make Backend ---");
     const client = new MongoClient(MAKE_DB_URI);
@@ -87,6 +116,12 @@ async function processMakeBackend() {
     }
 }
 
+/**
+ * Runs the currency snapshot migration workflow for the SC backend.
+ *
+ * @async
+ * @returns {Promise<void>} Resolves when SC backend processing completes.
+ */
 async function processSCBackend() {
     console.log("\n--- Processing SC Backend ---");
     const client = new MongoClient(SC_DB_URI);
@@ -108,6 +143,13 @@ async function processSCBackend() {
     }
 }
 
+/**
+ * Executes the full currency snapshot sync and migration process for all
+ * configured backends.
+ *
+ * @async
+ * @returns {Promise<void>} Resolves when all sync steps have completed.
+ */
 async function main() {
     console.log("Starting Consolidated Currency Snapshot Sync & Migration...");
     await processMakeBackend();

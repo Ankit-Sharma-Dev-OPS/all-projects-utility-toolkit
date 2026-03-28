@@ -1,8 +1,25 @@
 const { MongoClient } = require('mongodb');
 
-// Connection URI from .env file
-const MAKE_DB_URI = "";
+// Step 1  : For fixing the price issue in pipl make. 
 
+/**
+ * Migrates historical currency exchange-rate documents so their
+ * `base_currency` matches the organization currency defined in the
+ * `organizationsetups` collection.
+ *
+ * Update the MongoDB connection URI below before running the script.
+ */
+
+// Connection URI from .env file
+const MAKE_DB_URI = process.env.MAKE_DB_URI || "";
+/**
+ * Connects to the target database, reads the configured organization currency,
+ * rebases historical exchange-rate records to that currency, and updates each
+ * affected document in place.
+ *
+ * @async
+ * @returns {Promise<void>} Resolves when the migration completes.
+ */
 async function migrateExchangeRateHistory() {
     console.log("--- Starting Migration for CurrencyExchangeRate History ---");
     const client = new MongoClient(MAKE_DB_URI);
