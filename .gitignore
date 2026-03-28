@@ -1,0 +1,7 @@
+node_modules/
+data/
+mongodb_exports/
+full_db_mongodb_exports/
+migration_scripts/
+QuoteCreatoionDateChangeScript/
+*.zip
