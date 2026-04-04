@@ -2,14 +2,15 @@
 
 const { MongoClient } = require("mongodb");
 
+//clear url
 const uri = "";
 const dbName = "";
 
 /* CONSTANTS */
 const TAX2_VALUE = 0;     // or 0
-const TAX2_LABEL = ""; // or ""
+const TAX2_LABEL = "SGST"; // or ""
 
-const TAX1_LABEL = '';
+const TAX1_LABEL = 'GST';
 
 async function runMigration() {
     const client = new MongoClient(uri);
@@ -25,8 +26,8 @@ async function runMigration() {
             {},
             {
                 $set: {
-                    taxes:0,
-                    taxesLabel:TAX1_LABEL,
+                    taxes: 0,
+                    taxesLabel: TAX1_LABEL,
                     taxes2: TAX2_VALUE,
                     taxes2Label: TAX2_LABEL
                 }

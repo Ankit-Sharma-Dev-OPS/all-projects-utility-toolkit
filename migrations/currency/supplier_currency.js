@@ -6,6 +6,7 @@
 
 const { MongoClient } = require("mongodb");
 
+//clear url
 const uri = "";
 const dbName = "";
 
@@ -16,8 +17,8 @@ async function runMigration() {
     const client = new MongoClient(uri);
     const makeClient = new MongoClient(makeDbUri);
 
-   
-        /* STEP 1: Fetch master currency from make db */
+
+    /* STEP 1: Fetch master currency from make db */
     try {
         await client.connect();
         await makeClient.connect();
@@ -57,7 +58,7 @@ async function runMigration() {
                 {
                     $set: {
                         currencySnapshot: {
-                            adminRate: 1,
+
                             customerRate: 1,
                             rateDate: rfq.createdAt || new Date(),
                         },
@@ -79,7 +80,7 @@ async function runMigration() {
                 {
                     $set: {
                         currencySnapshot: {
-                            adminRate: 1,
+
                             customerRate: 1,
                             rateDate: po.createdAt || new Date(),
                         },

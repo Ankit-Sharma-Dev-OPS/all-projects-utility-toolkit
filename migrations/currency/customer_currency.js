@@ -2,6 +2,7 @@
 
 const { MongoClient } = require("mongodb");
 
+//clear url
 const uri = "";
 const dbName = "";
 
@@ -45,7 +46,6 @@ async function runMigration() {
         {
           $set: {
             currencySnapshot: {
-              adminRate: 1,
               customerRate: 1,
               rateDate: quote.createdAt || new Date(),
             },
@@ -67,7 +67,6 @@ async function runMigration() {
         {
           $set: {
             currencySnapshot: {
-              adminRate: 1,
               customerRate: 1,
               rateDate: order.createdAt || new Date(),
             },
