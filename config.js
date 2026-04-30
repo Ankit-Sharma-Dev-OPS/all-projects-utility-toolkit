@@ -1,7 +1,7 @@
 module.exports = {
     // MongoDB Connection Strings
-    MAKE_DB_URI: 'mongodb+srv://ankitdainstatest:CYybMpQwodm7hmYE@cluster0.s8cihku.mongodb.net/pipl-make-local',
-    SC_DB_URI: 'mongodb+srv://ankitdainstatest:CYybMpQwodm7hmYE@cluster0.s8cihku.mongodb.net/pipl-sc-local',
+    MAKE_DB_URI: '',
+    SC_DB_URI: '',
 
     EXPORT_FILE_BASE: 'orders_export',
 
