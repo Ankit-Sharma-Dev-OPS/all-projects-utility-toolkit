@@ -1,10 +1,10 @@
 const { MongoClient } = require("mongodb");
 
-const sourceDBURI = "mongodb+srv://ankitdainstatest:CYybMpQwodm7hmYE@cluster0.s8cihku.mongodb.net/pipl-make-local";
-const sourceDBName = "pipl-make-local";
+const sourceDBURI = "";
+const sourceDBName = "";
 
-const destinationDBURI = "mongodb+srv://ankitdainstatest:CYybMpQwodm7hmYE@cluster0.s8cihku.mongodb.net/ndcs-make-local";
-const destinationDBName = "ndcs-make-local";
+const destinationDBURI = "";
+const destinationDBName = "";
 
 const collectionsToExport = [
     "certifications",
