@@ -1,7 +1,10 @@
+const path = require('path');
+require('dotenv').config({ path: path.join(__dirname, '.env') });
+
 module.exports = {
     // MongoDB Connection Strings
-    MAKE_DB_URI: '',
-    SC_DB_URI: '',
+    MAKE_DB_URI: process.env.MAKE_DB_URI || '',
+    SC_DB_URI: process.env.SC_DB_URI || '',
 
     EXPORT_FILE_BASE: 'orders_export',
 

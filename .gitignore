@@ -5,3 +5,5 @@ full_db_mongodb_exports/
 migration_scripts/
 QuoteCreatoionDateChangeScript/
 *.zip
+
+*.env*
