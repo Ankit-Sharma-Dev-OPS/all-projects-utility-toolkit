@@ -65,8 +65,8 @@ async function runMigration() {
     const scURI = '';
 
     //db name
-    const makeDbName = 'pipl-make-local';
-    const scDbName = 'pipl-sc-local';
+    const makeDbName = '';
+    const scDbName = '';
 
     let makeClient, scClient;
 
