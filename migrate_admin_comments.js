@@ -61,8 +61,8 @@ async function runMigration() {
     console.log('====================================================');
 
     // Retrieve URIs from config or environment variables, or fall back to defaults
-    const makeURI = 'mongodb+srv://ankitdainstatest:CYybMpQwodm7hmYE@cluster0.s8cihku.mongodb.net/pipl-make-local';
-    const scURI = 'mongodb+srv://ankitdainstatest:CYybMpQwodm7hmYE@cluster0.s8cihku.mongodb.net/pipl-sc-local';
+    const makeURI = '';
+    const scURI = '';
 
     //db name
     const makeDbName = 'pipl-make-local';
